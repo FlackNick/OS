@@ -22,7 +22,7 @@ function checkFile(){
 case $1 in
      calc)      
           checkFile $1
-          ./calc.sh $2 $3 $4
+          ./calc.sh $@
           ;;
 esac
-echo "hfhevw"
+echo "main works"

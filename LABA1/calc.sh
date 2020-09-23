@@ -1,43 +1,75 @@
 #! /usr/bin/env bash
-function ERROR_of_first(){
+function ERROR_of_request(){
+    echo "Incorrect request"
     exit -1
 }
 
+function ERROR_of_amount_arguments(){
+    echo "Incorrect amount of arguments"
+    exit -2
+}
+
+function ERROR_string_argument(){
+    echo "First or second argument is not an integer"
+    exit -3
+}
+
+function ERROR_null_div(){
+    echo "Division by zero is prohibited"
+    exit -4
+}
+
+function check_correctness(){
+    if [[ -n $5 || -z $4 || -z $3 ]]
+    then ERROR_of_amount_arguments
+    fi
+    re='^-?[0-9]+$'
+    if ! [[ "$3" =~ $re && "$4" =~ $re ]]
+    then ERROR_string_argument
+    fi
+    if [[ $4 -eq '0' && $2 = 'div' ]]
+    then ERROR_null_div
+    fi
+}
+
 function sum(){
- echo $(( $1 + $2 ))
+ echo Task: $1 + $2
+ echo Answer: $(( $1 + $2 ))
 }
 
 function sub(){
- echo $(( $1 - $2 ))
+ echo Task: $1 - $2
+ echo Answer: $(( $1 - $2 ))
 }
 
 function mul(){
- echo $(( $1 * $2 ))
+ echo Task: $1 '*' $2
+ echo Answer: $(( $1 * $2 ))
 }
 
 function div(){
- echo $(( $1 / $2 ))
+ echo Task: $1 / $2
+ echo Answer: $(( $1 / $2 ))
 }
 
 function DO(){
-    case $1 in
+    case $2 in
 sum)
-    sum $2 $3
+    sum $3 $4
     ;;
 sub)
-    sub $2 $3
+    sub $3 $4
     ;;
 mul)   
-    mul $2 $3
+    mul $3 $4
     ;;
 div)
-    div $2 $3
+    div $3 $4
     ;;
 *)
-    echo "Incorrect data"
-    ERROR_of_first
+    ERROR_of_request
     ;;
 esac
 }
-
-if []
+check_correctness $@
+DO $@

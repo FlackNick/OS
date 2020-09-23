@@ -71,5 +71,6 @@ div)
     ;;
 esac
 }
+
 check_correctness $@
 DO $@

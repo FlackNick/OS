@@ -28,5 +28,9 @@ case $1 in
         checkFile $1
         ./search.sh $@
         ;;
+    revers)
+        checkFile $1
+        ./revers.sh $@
+        ;;
 esac
 echo "main works"

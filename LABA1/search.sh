@@ -28,6 +28,10 @@ function check_correctness(){
     fi
 }
 
+function DO(){
+    grep -r -s "$3" "$2"
+}
+
 echo ----------search----------
 check_correctness $@
-grep -r -s "$3" "$2"
+DO $@

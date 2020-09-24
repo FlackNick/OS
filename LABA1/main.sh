@@ -1,10 +1,12 @@
 #! /usr/bin/env bash
 function File_not_found_ERROR(){
-    echo "This file does not exist!" 
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mThis file does not exist\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -en "\007"
     exit -1
 }
 function Acces_ERROR(){
-    echo "Acces denied!"
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mAccess denied\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -en "\007"
     exit -2
 }
 
@@ -19,18 +21,19 @@ function checkFile(){
     fi
 }
 
+checkFile $1
 case $1 in
     calc)      
-        checkFile $1
         ./calc.sh $@
         ;;
     search)
-        checkFile $1
         ./search.sh $@
         ;;
     revers)
-        checkFile $1
         ./revers.sh $@
+        ;;
+    strlen)
+        ./strlen.sh $@
         ;;
 esac
 echo "main works"

@@ -50,10 +50,9 @@ function check_correctness(){
     fi
 }
 
-echo ----------revers----------
-check_correctness $@
-for ((;;))
-do
+function DO(){
+    for ((;;))
+    do
     echo 'Do you want to delete data in second file?' 
     read -p "y/n?" answer
     case $answer in
@@ -74,4 +73,9 @@ do
         ;;
     esac
 done
+}
+
+echo ----------revers----------
+check_correctness $@
+DO $@
 

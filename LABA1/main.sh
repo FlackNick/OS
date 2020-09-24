@@ -35,5 +35,11 @@ case $1 in
     strlen)
         ./strlen.sh $@
         ;;
+    log)
+        ./log.sh $@
+        ;;
+    exit)
+        ./exit.sh $@
+        ;;
 esac
 echo "main works"

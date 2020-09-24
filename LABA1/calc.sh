@@ -1,21 +1,26 @@
 #! /usr/bin/env bash
 function ERROR_of_request(){
-    echo "Incorrect request"
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mIncorrect request\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -en "\007"
     exit -1
 }
 
 function ERROR_of_amount_arguments(){
-    echo "Incorrect amount of arguments"
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mIncorrect amount of arguments\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -e '\033[1;31m                      you should write 2 arguments after you request\033[0m'     
+    echo -en "\007"
     exit -2
 }
 
 function ERROR_string_argument(){
-    echo "First or second argument is not an integer"
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mFirst or second argument is not an integer\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -en "\007"
     exit -3
 }
 
 function ERROR_null_div(){
-    echo "Division by zero is prohibited"
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mDivision by zero is prohibited\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -en "\007"
     exit -4
 }
 
@@ -72,5 +77,6 @@ div)
 esac
 }
 
+echo ----------calc----------
 check_correctness $@
 DO $@

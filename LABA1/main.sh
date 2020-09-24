@@ -41,5 +41,8 @@ case $1 in
     exit)
         ./exit.sh $@
         ;;
+    help)
+        ./help.sh $@
+        ;;
 esac
 echo "main works"

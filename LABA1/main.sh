@@ -9,7 +9,7 @@ function Access_ERROR(){
     echo -en "\007"
     exit -2
 }
-
+#ошибки
 function checkFile(){
     if ! [ -a $1.sh ] 
     then
@@ -20,7 +20,7 @@ function checkFile(){
     Acces_ERROR
     fi
 }
-
+#проверка на ошибки
 function DO(){
     case $1 in
     calc)      
@@ -49,5 +49,6 @@ function DO(){
         ;;
     esac
 }
+#запуск остальных файлов из мейна
 checkFile $1
 DO $@

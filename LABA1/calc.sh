@@ -7,7 +7,6 @@ function ERROR_of_request(){
 
 function ERROR_of_amount_arguments(){
     echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mIncorrect amount of arguments\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
-    echo -e '\033[1;31m                      you should write 2 arguments after you request\033[0m'     
     echo -en "\007"
     exit -2
 }

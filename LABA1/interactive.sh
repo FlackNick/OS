@@ -1,25 +1,52 @@
 #! /usr/bin/env bash
-
+check_var
+#переменная для функции проверки ошибок
 function ERROR_of_request(){
     echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mIncorrect request!\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -1
 }
 
+function Acces_ERROR(){
+    echo -e '\033[1;31mAccess denied\033[0m' "($1)"
+}
+
+function File_not_found_ERROR(){
+    echo -e '\033[1;31mFile does not exist\033[0m' "($1)"
+}
+#ошибки
 function checkFile(){
-    if ! [ -a $1.sh ] 
+    if ! [ -e $1 ] 
     then
-    File_not_found_ERROR
+    File_not_found_ERROR $1
+    check_var=1
     fi
-    if ! [ -r $1.sh ]
+    if ! [ -r $1 ]
     then 
-    Acces_ERROR
+    Acces_ERROR $1
+    check_var=1
     fi
 }
 
+function checkALLFiles(){
+    clear
+    checkFile calc.sh
+    checkFile search.sh 
+    checkFile revers.sh 
+    checkFile strlen.sh 
+    checkFile log.sh 
+    checkFile help.sh 
+    checkFile exit.sh  
+    if [[ check_var -eq 1 ]]
+    then 
+    echo -e '\033[1;5mPlease, enter...\033[0m'
+    read
+    fi
+}
+#проверки файлов на ошибки
 function Head_request(){
     echo '  _-_-_-_-_-_-_-_-_-_-_-_'
-    echo '- What do you want to do? -'
+    echo -e '\033[1;34m- What do you want to do? -\033[0m'
     echo '  -_-_-_-_-_-_-_-_-_-_-_-'
     echo 
     echo -e '\033[1mA:\033[0m Use calculator (calc)'
@@ -33,43 +60,56 @@ function Head_request(){
 }
 
 function Arguments_request(){
-    echo Pleace, write your arguments
+    echo Please, write your arguments
 }
-
+#диалоговые функции
 function DO(){
     for ((;;))
     do
     clear
     Head_request
+
+    for ((;;))
+    do
     read answer
         case $answer in
     A)      
         req='calc'
+        break
         ;;
     B)
         req='search'
+        break
         ;;
     C)
         req='revers'
+        break
         ;;
     D)
         req='strlen'
+        break
         ;;
     E)
         req='log'
+        break
         ;;
     G)
         req='exit'
+        break
         ;;
     F)
         req='help'
+        break
         ;;
     *)
-        ERROR_of_request
+        echo -e '\033[1;31mIncorrect request! Please, write A,B,C...\033[0m'
+        echo -en "\007"
         ;;
     esac
+    done
+
     clear
-    if ! [ $answer = 'F' ]
+    if ! [[ $answer = 'F' || $answer = 'E' ]]
     then 
     Arguments_request
     read arg1 arg2 arg3
@@ -79,10 +119,11 @@ function DO(){
     if [ $req = 'exit' ]
     then break
     fi
-    echo pleace, enter...
+    echo -e '\033[1;5mPlease, enter...\033[0m'
     read
     done 
 }
-
+#главная функция работы
 echo ----------interactive----------
-DO $@
+checkALLFiles
+DO

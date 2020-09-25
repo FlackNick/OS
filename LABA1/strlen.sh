@@ -12,8 +12,9 @@ function check_correctness(){
 }
 
 function DO(){
-    echo -n "Length ($2) is "
-    echo "$2" | awk '{print length}'
+    var="$2"
+    size=${#var}
+    echo String size is "$size"
 }
 
 echo ----------strlen----------

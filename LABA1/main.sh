@@ -4,7 +4,7 @@ function File_not_found_ERROR(){
     echo -en "\007"
     exit -1
 }
-function Acces_ERROR(){
+function Access_ERROR(){
     echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mAccess denied\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -2
@@ -21,8 +21,8 @@ function checkFile(){
     fi
 }
 
-checkFile $1
-case $1 in
+function DO(){
+    case $1 in
     calc)      
         ./calc.sh $@
         ;;
@@ -44,5 +44,10 @@ case $1 in
     help)
         ./help.sh $@
         ;;
-esac
-echo "main works"
+    interactive)
+        ./interactive.sh $@
+        ;;
+    esac
+}
+checkFile $1
+DO $@

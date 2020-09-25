@@ -60,12 +60,14 @@ function DO(){
         tail -r $2 >> buffer.txt
         rev buffer.txt > $3
         rm buffer.txt
+        echo success!
         break
         ;;
     n) 
         tail -r $2 >> buffer.txt
         rev buffer.txt >> $3
         rm buffer.txt
+        echo success!
         break
         ;;
     *)

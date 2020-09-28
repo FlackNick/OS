@@ -46,8 +46,8 @@ function DO(){
     search)
         ./search.sh $@
         ;;
-    revers)
-        ./revers.sh $@
+    reverse)
+        ./reverse.sh $@
         ;;
     log)
         ./log.sh $@
@@ -68,10 +68,15 @@ Nude_main $1
 checkFile $1
 if [ $1 = "strlen" ]
 then 
-    if ! [[ $# -eq 2 ]]
-    then 
-    ERROR_of_amount_arguments
+    if ! [[ $3 = "int" ]]
+    then
+        if ! [[ $# -eq 2 ]]
+        then 
+        ERROR_of_amount_arguments
+        fi
+        ./strlen.sh "$2"
+        exit 0
     fi
-./strlen.sh "$2"
+./strlen.sh "$2" $3
 fi
 DO $@

@@ -14,6 +14,10 @@ function Acces_ERROR(){
 function File_not_found_ERROR(){
     echo -e '\033[1;31mFile does not exist\033[0m' "($1)"
 }
+
+function Enter_string(){
+    echo 'Enter your string without ""'
+}
 #ошибки
 function checkFile(){
     if ! [ -e $1 ] 
@@ -111,7 +115,7 @@ function DO(){
     clear
     if [[ $answer = 'D' ]]
     then
-    Arguments_request
+    Enter_string
     read arg1 
     ./main.sh $req "$arg1" 
     echo -e '\033[1;5mPlease, enter...\033[0m'

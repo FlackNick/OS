@@ -57,13 +57,11 @@ function check_correctness(){
 }
 
 function DO(){
-        tac $1 >> buffer.txt
-        echo >> $2
-        rev buffer.txt >> $2
+        tac $2 > buffer.txt
+        echo > $3
+        rev buffer.txt > $3
         rm buffer.txt
         echo success!
-        break
-done
 }
 
 echo ----------revers----------

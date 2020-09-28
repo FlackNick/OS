@@ -57,8 +57,9 @@ function check_correctness(){
 }
 
 function DO(){
-        tail -r $2 >> buffer.txt
-        rev buffer.txt >> $3
+        tac $1 >> buffer.txt
+        echo >> $2
+        rev buffer.txt >> $2
         rm buffer.txt
         echo success!
         break

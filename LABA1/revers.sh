@@ -57,29 +57,11 @@ function check_correctness(){
 }
 
 function DO(){
-    for ((;;))
-    do
-    echo 'Do you want to delete data in second file?' 
-    read -p "y/n?" answer
-    case $answer in
-    y)  
-        tail -r $2 >> buffer.txt
-        rev buffer.txt > $3
-        rm buffer.txt
-        echo success!
-        break
-        ;;
-    n) 
         tail -r $2 >> buffer.txt
         rev buffer.txt >> $3
         rm buffer.txt
         echo success!
         break
-        ;;
-    *)
-        echo -e '\033[1;30;46mIncorrect answer, please enter y (yes) or n (no)\033[0m'
-        ;;
-    esac
 done
 }
 

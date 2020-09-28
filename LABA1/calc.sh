@@ -23,6 +23,21 @@ function ERROR_null_div(){
     exit -4
 }
 
+function check_zero(){
+    if [[ "$3" = "+0" || "$3" = "-0" ]]
+    then $2 0 $4
+    exit 0
+    fi
+    if [[ "$4" = "+0" || "$4" = "-0" ]]
+    then $2 $3 0
+    exit 0
+    fi
+    if [[ "$3" = "+0" || "$3" = "-0" && "$4" = "+0" || "$4" = "-0" ]]
+    then $2 0 0
+    exit 0
+    fi
+}
+
 function check_correctness(){
     if [[ -n $5 || -z $4 || -z $3 ]]
     then ERROR_of_amount_arguments
@@ -59,15 +74,23 @@ function div(){
 function DO(){
     case $2 in
 sum)
+    check_zero $@
+    check_correctness $@
     sum $3 $4
     ;;
 sub)
+    check_zero $@
+    check_correctness $@
     sub $3 $4
     ;;
 mul)   
+    check_zero $@
+    check_correctness $@
     mul $3 $4
     ;;
 div)
+    check_zero $@
+    check_correctness $@
     div $3 $4
     ;;
 *)
@@ -77,5 +100,4 @@ esac
 }
 
 echo ----------calc----------
-check_correctness $@
 DO $@

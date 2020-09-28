@@ -6,12 +6,14 @@ function ERROR_of_amount_arguments(){
 }
 
 function ERROR_of_rights(){
+    echo "$1"
     echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mThis directory is not available for you \033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -2
 }
 
 function ERROR_not_exist(){
+    echo $1
     echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mThis directory do not exist\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -3
@@ -25,7 +27,7 @@ function check_correctness(){
     then ERROR_not_exist
     fi
     if ! [[ -r $2 ]]
-    then ERROR_of_rights
+    then ERROR_of_rights $2
     fi
 }
 

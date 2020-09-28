@@ -109,16 +109,28 @@ function DO(){
     done
 
     clear
+    if [[ $answer = 'D' ]]
+    then
+    Arguments_request
+    read arg1 
+    ./main.sh $req "$arg1" 
+    echo -e '\033[1;5mPlease, enter...\033[0m'
+    read
+    continue
+    fi
+
     if ! [[ $answer = 'F' || $answer = 'E' ]]
     then 
     Arguments_request
     read arg1 arg2 arg3
     fi
+
     clear
     ./main.sh $req $arg1 $arg2 $arg3
     if [ $req = 'exit' ]
     then break
     fi
+
     echo -e '\033[1;5mPlease, enter...\033[0m'
     read
     done 

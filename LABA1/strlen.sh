@@ -6,17 +6,25 @@ function ERROR_of_amount_arguments(){
 }
 
 function check_correctness(){
-    if [[ -n $3 || -z $2 ]]
+    if [[ -n $2 ]]
     then ERROR_of_amount_arguments
+    fi
+    if [ "$1" = "" ]
+    then 
+    echo String size is 0
+    exit 0
     fi
 }
 
 function DO(){
-    var="$2"
+    echo "String: '$1'"
+    var="$1"
     size=${#var}
     echo String size is "$size"
 }
 
 echo ----------strlen----------
-check_correctness $@
-DO $@
+echo $1 
+echo $2
+check_correctness "$1" "$2"
+DO "$1"

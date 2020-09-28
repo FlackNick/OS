@@ -1,19 +1,30 @@
 #! /usr/bin/env bash
 function File_not_found_ERROR(){
+    echo "                          File: $1.sh"
     echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mThis file does not exist\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -1
 }
+
 function Access_ERROR(){
+    echo "                          File: $1.sh"
     echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mAccess denied\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -2
+}
+
+function Nude_main(){
+    if [[ $1 = '' ]]
+    then 
+    echo -e '\033[1;31mYou enter empty argument, please, enter "help" after to know all opportunities\033[0m'
+    exit -3
+    fi
 }
 #ошибки
 function checkFile(){
     if ! [ -a $1.sh ] 
     then
-    File_not_found_ERROR
+    File_not_found_ERROR $1
     fi
     if ! [ -r $1.sh ]
     then 
@@ -32,9 +43,6 @@ function DO(){
     revers)
         ./revers.sh $@
         ;;
-    strlen)
-        ./strlen.sh $@
-        ;;
     log)
         ./log.sh $@
         ;;
@@ -50,5 +58,10 @@ function DO(){
     esac
 }
 #запуск остальных файлов из мейна
+Nude_main $1
 checkFile $1
+if [ $1 = "strlen" ]
+then 
+./strlen.sh "$2" $3
+fi
 DO $@

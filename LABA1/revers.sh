@@ -6,7 +6,13 @@ function ERROR_of_amount_arguments(){
 }
 
 function ERROR_of_rights(){
-    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mFirst is not available for you \033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mFirst file is not available for you \033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -en "\007"
+    exit -2
+}
+
+function ERROR_not_exist(){
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mFirst file does not exist \033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -2
 }
@@ -18,13 +24,13 @@ function ERROR_dir_access(){
 }
 
 function ERROR_creating_access(){
-    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mDirectory of second file is not available for you for creating\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mError of directory of second file for creating\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -4
 }
 
 function ERROR_access(){
-    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mFile is not available for you\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
+    echo -e '    \033[1;5;31m      {{ERROR}}\033[0m' '    \033[1;31mYou do not have enought rights for second directory\033[0m' '    \033[1;5;31m{{ERROR}}\033[0m'
     echo -en "\007"
     exit -5
 }
@@ -46,7 +52,7 @@ function check_correctness(){
     then ERROR_creating_access
     fi
     if [[ -f $3 ]] && ! [[ -w $3 ]]
-    then ERROR_access
+    then ERROR_dir_access
     fi
 }
 

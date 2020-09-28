@@ -12,7 +12,7 @@ function check_correctness(){
 }
 
 function DO(){
-    ref="/Users/nikitacikalev/Documents/OS/LABA1/X.log"
+    ref="/var/log/anaconda/X.log"
     while read line
     do
       if [[ "$line" = *"(WW)"* && "$line" != *"(WW) warning, (EE) error, (NI) not implemented, (??) unknown."* ]]

@@ -25,15 +25,21 @@ function ERROR_null_div(){
 
 function check_zero(){
     if [[ "$3" = "+0" || "$3" = "-0" ]]
-    then $2 0 $4
+    then 
+    re='^-?[0-9]+$'
+    if ! [[ "$4" =~ $re ]]
+    then ERROR_string_argument
+    fi
+    $2 0 $4
     exit 0
     fi
     if [[ "$4" = "+0" || "$4" = "-0" ]]
-    then $2 $3 0
-    exit 0
+    then
+    re='^-?[0-9]+$'
+    if ! [[ "$3" =~ $re ]]
+    then ERROR_string_argument
     fi
-    if [[ "$3" = "+0" || "$3" = "-0" && "$4" = "+0" || "$4" = "-0" ]]
-    then $2 0 0
+    $2 $3 0
     exit 0
     fi
 }

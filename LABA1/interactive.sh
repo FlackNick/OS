@@ -74,7 +74,7 @@ function Head_request(){
     echo 
     echo -e '\033[1mA:\033[0m Use calculator (calc)'
     echo -e '\033[1mB:\033[0m Find word (search)'
-    echo -e '\033[1mC:\033[0m Reverse one file (revers)'
+    echo -e '\033[1mC:\033[0m Reverse one file (reverse)'
     echo -e '\033[1mD:\033[0m Know how long the string (strlen)'
     echo -e '\033[1mE:\033[0m Read /var/log/anaconda/X.log (log)'
     echo -e '\033[1mF:\033[0m HELP ME!!!'

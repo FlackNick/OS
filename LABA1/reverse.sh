@@ -64,7 +64,7 @@ function DO(){
         echo success!
 }
 
-echo ----------revers----------
+echo ----------reverse----------
 check_correctness $@
 DO $@
 
